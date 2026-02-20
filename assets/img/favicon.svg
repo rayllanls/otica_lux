@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect width="100" height="100" rx="20" fill="#121212" />
+  <!-- Eye shape representing Óticas Lux identity -->
+  <path d="M15 50 Q50 15 85 50 Q50 85 15 50 Z" fill="none" stroke="#C5A03D" stroke-width="8" stroke-linejoin="round" />
+  <!-- Iris -->
+  <circle cx="50" cy="50" r="16" fill="#C5A03D" />
+  <!-- Reflection -->
+  <circle cx="45" cy="45" r="4" fill="#121212" />
+</svg>
