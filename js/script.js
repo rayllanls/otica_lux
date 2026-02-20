@@ -1,7 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ---- Hero Carousel ----
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-indicators .dot');
+    let currentSlide = 0;
+    let slideInterval;
+
+    const nextSlide = () => {
+        if (slides.length === 0) return;
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    };
+
+    const goToSlide = (index) => {
+        if (slides.length === 0) return;
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+        currentSlide = index;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+        resetInterval();
+    };
+
+    const resetInterval = () => {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 5000);
+    };
+
+    if (slides.length > 0) {
+        slideInterval = setInterval(nextSlide, 5000);
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+            });
+        });
+    }
+
     // ---- Navbar Scroll Effect ----
     const header = document.getElementById('header');
-    
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
@@ -37,16 +77,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ---- Active Navigation Link updating ----
     const sections = document.querySelectorAll('section[id]');
-    
+
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
-        
+
         sections.forEach(current => {
             const sectionHeight = current.offsetHeight;
             const sectionTop = current.offsetTop - 100;
             const sectionId = current.getAttribute('id');
             const navLink = document.querySelector(`.nav-list a[href*=${sectionId}]`);
-            
+
             if (navLink) {
                 if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
                     navLink.classList.add('active');
