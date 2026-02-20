@@ -756,14 +756,31 @@ img {
         grid-template-columns: 1fr;
     }
 
+    .hero-content {
+        padding-top: calc(var(--header-height) + 40px);
+        text-align: center;
+    }
+
+    .hero-text {
+        margin: 0 auto 40px;
+    }
+
     .hero-text h1 {
         font-size: 3.5rem;
+    }
+
+    .hero-image-container {
+        height: 50vh;
+        min-height: 350px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
     }
 
     .services-image {
         min-height: 300px;
         order: -1;
-        /* image on top on mobile */
     }
 }
 
@@ -782,8 +799,22 @@ img {
         font-size: 2.8rem;
     }
 
+    .hero-text p {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
     .hero-buttons {
         flex-direction: column;
+    }
+
+    .hero-image-container {
+        height: 40vh;
+        min-height: 280px;
+    }
+
+    .carousel-crossfade {
+        border-radius: 12px;
     }
 
     .section {
