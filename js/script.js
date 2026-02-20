@@ -7,17 +7,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const nextSlide = () => {
         if (slides.length === 0) return;
+
+        // Remove previous 'prev' classes
+        slides.forEach(s => s.classList.remove('prev'));
+
+        // Current slide becomes 'prev' (moves left)
         slides[currentSlide].classList.remove('active');
+        slides[currentSlide].classList.add('prev');
         dots[currentSlide].classList.remove('active');
+
+        // Next slide becomes 'active' (comes from right)
         currentSlide = (currentSlide + 1) % slides.length;
         slides[currentSlide].classList.add('active');
         dots[currentSlide].classList.add('active');
     };
 
     const goToSlide = (index) => {
-        if (slides.length === 0) return;
+        if (slides.length === 0 || index === currentSlide) return;
+
+        slides.forEach(s => s.classList.remove('prev'));
+
+        // If clicking a dot that is *before* the current one, standard logic applies but reverse could be done. 
+        // For simplicity, always animate outgoing to 'prev'
         slides[currentSlide].classList.remove('active');
+        slides[currentSlide].classList.add('prev');
         dots[currentSlide].classList.remove('active');
+
         currentSlide = index;
         slides[currentSlide].classList.add('active');
         dots[currentSlide].classList.add('active');
